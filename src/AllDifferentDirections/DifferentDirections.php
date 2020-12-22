@@ -1,11 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace AllDifferentDirections;
+
+use Exception;
 
 class DifferentDirections
 {
-    /* @var DirectionsCase[] */
-    public $directionsCases = [];
+    /**
+     * @var array<DirectionsCase>
+     */
+    public array $directionsCases = [];
 
     private function __construct()
     {
@@ -14,7 +20,7 @@ class DifferentDirections
     /**
      * @param resource $input
      * @return DifferentDirections
-     * @throws \Exception
+     * @throws Exception
      */
     public static function buildDirectionsCasesFromInput($input): DifferentDirections
     {
@@ -24,9 +30,9 @@ class DifferentDirections
             if ($caseLength === 0) {
                 break;
             }
-            $directionRows=[];
+            $directionRows = [];
             for ($i = 0; $i < $caseLength; $i++) {
-               $directionRows[]=fgets($input);
+                $directionRows[] = fgets($input);
             }
             $directionsCase = DirectionsCase::buildDirectionCase($directionRows);
             $differentDirections->addDirectionsCase($directionsCase);
@@ -55,15 +61,13 @@ class DifferentDirections
      */
     public function getOutput(): string
     {
-        return array_reduce($this->getDirectionsCases(), function ($prev, $case) {
-            return "$prev$case\n";
-        }, '');
+        return array_reduce($this->getDirectionsCases(), static fn($prev, $case) => $prev . $case . PHP_EOL, '');
     }
 
     /**
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->getOutput();
     }

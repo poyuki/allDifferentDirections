@@ -1,15 +1,13 @@
 <?php
 
+declare(strict_types=1);
 
 namespace AllDifferentDirections;
 
-
 class DirectionPoint
 {
-    /* @var float */
-    private $x;
-    /* @var float */
-    private $y;
+    private float $x;
+    private float $y;
 
 
     /**
@@ -46,7 +44,7 @@ class DirectionPoint
     /**
      * @param float $x
      */
-    public function setX($x): void
+    public function setX(float $x): void
     {
         $this->x = $x;
     }
@@ -62,12 +60,12 @@ class DirectionPoint
     /**
      * @param float $y
      */
-    public function setY($y): void
+    public function setY(float $y): void
     {
         $this->y = $y;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         $x_formatted=number_format($this->x,4);
         $y_formatted=number_format($this->y,4);

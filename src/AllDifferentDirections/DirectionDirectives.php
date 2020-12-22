@@ -1,12 +1,12 @@
 <?php
 
+declare(strict_types=1);
 
 namespace AllDifferentDirections;
 
-
 class DirectionDirectives
 {
-    const START = 'start';
-    const TURN = 'turn';
-    const WALK = 'walk';
+    public const START = 'start';
+    public const TURN = 'turn';
+    public const WALK = 'walk';
 }

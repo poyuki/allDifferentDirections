@@ -1,15 +1,17 @@
 <?php
 
+declare(strict_types=1);
 
 namespace AllDifferentDirections;
 
-
-use \Exception;
+use RuntimeException;
 
 class DirectionsCase
 {
-    /* @var DirectionPoint[]* */
-    public $directions = [];
+    /**
+     * @var array
+     */
+    public array $directions = [];
 
     private function __construct()
     {
@@ -24,9 +26,9 @@ class DirectionsCase
     }
 
     /**
-     * @param string $directionRow
+     * @param array $directionRows
      * @return DirectionsCase
-     * @throws Exception
+     * @throws RuntimeException
      */
     public static function buildDirectionCase(array $directionRows): DirectionsCase
     {
@@ -49,7 +51,7 @@ class DirectionsCase
                         $point->calculateNewDirectionPoint((float)next($directionArray), $angle);
                         break;
                     default:
-                        throw new Exception('Unknown directive');
+                        throw new RuntimeException('Unknown directive');
                 }
             }
             $directionCase->addDirection($point);
@@ -87,7 +89,7 @@ class DirectionsCase
      * @param DirectionPoint|null $avgDirectionPoint
      * @return int|mixed
      */
-    public function calculateAndGetWorstDistanceBetweenAvgAndDirections(DirectionPoint $avgDirectionPoint = null)
+    public function calculateAndGetWorstDistanceBetweenAvgAndDirections(DirectionPoint $avgDirectionPoint = null): int
     {
         $worstDistance = 0;
         if (!isset($avgDirectionPoint)) {
@@ -107,14 +109,15 @@ class DirectionsCase
     {
         $avgDirectionPoint = $this->calculateAndGetAvgDirection();
         $worstDistance = $this->calculateAndGetWorstDistanceBetweenAvgAndDirections($avgDirectionPoint);
-        $worstDistanceFormatted=number_format($worstDistance,5);
+        $worstDistanceFormatted = number_format($worstDistance, 5);
+
         return "$avgDirectionPoint $worstDistanceFormatted";
     }
 
     /**
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->getOutput();
     }

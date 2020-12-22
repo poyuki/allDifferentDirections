@@ -20,8 +20,8 @@
             "src"
         ],
         "psr-4": {
-            "AllDifferentDirections\\": "src/",
-            "AllDifferentDirections\\Tests\\": "tests/"
+            "AllDifferentDirections\\": "src/AllDifferentDirections/",
+            "AllDifferentDirections\\Tests\\": "tests/AllDifferentDirections/"
         },
         "psr-0": {
             "AllDifferentDirections\\Tests\\": "/tests/"
