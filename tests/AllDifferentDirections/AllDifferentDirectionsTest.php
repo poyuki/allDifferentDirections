@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace AllDifferentDirections\Tests;
 
-use AllDifferentDirections;
+use AllDifferentDirections\DifferentDirections;
 use PHPUnit\Framework\TestCase;
 
 class AllDifferentDirectionsTest extends TestCase
@@ -15,7 +15,7 @@ class AllDifferentDirectionsTest extends TestCase
     public function testMain(): void
     {
         $inputResource = fopen($this->input, 'rb+');
-        $differentDirections = AllDifferentDirections\DifferentDirections::buildDirectionsCasesFromInput($inputResource);
+        $differentDirections = DifferentDirections::buildDirectionsCasesFromInput($inputResource);
         fclose($inputResource);
         $output = $differentDirections->getOutput();
 
